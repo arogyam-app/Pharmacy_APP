@@ -1,0 +1,461 @@
+/**
+ * The design system for the whole app.
+ *
+ * Two things drive every choice here: this is a *counter* application used
+ * standing up with a queue waiting, and it is used all day. So it is dense
+ * — more rows visible without scrolling — and quiet, with colour reserved
+ * for things that need a decision. Nothing is styled per screen that can be
+ * styled once here.
+ */
+
+:root {
+  /* --- colour ------------------------------------------------------- */
+  --bg: #f1f4f7;
+  --surface: #ffffff;
+  --surface-sunken: #f8fafb;
+  --border: #dde3ea;
+  --border-strong: #c3ccd7;
+  --text: #17202b;
+  --text-muted: #5f6b7a;
+  --accent: #0f766e;
+  --accent-hover: #0b5c56;
+  --accent-soft: #e4f2f0;
+  --ok: #15734a;
+  --ok-soft: #e6f5ed;
+  --warn: #96590a;
+  --warn-soft: #fdf4e1;
+  --danger: #ad2318;
+  --danger-soft: #fdeae8;
+
+  /* --- spacing: one scale, used everywhere --------------------------- */
+  --sp-1: 0.25rem;
+  --sp-2: 0.5rem;
+  --sp-3: 0.75rem;
+  --sp-4: 1rem;
+  --sp-5: 1.5rem;
+
+  --radius: 7px;
+  --radius-sm: 5px;
+  --shadow: 0 1px 2px rgba(16, 24, 40, 0.05);
+  --shadow-lift: 0 4px 14px rgba(16, 24, 40, 0.12);
+
+  --sidebar-w: 12.5rem;
+  --topbar-h: 3rem;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#app {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  /* 14px fits appreciably more on screen than 15 without straining. */
+  font-size: 14px;
+  line-height: 1.45;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0 0 var(--sp-2);
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+h1 {
+  font-size: 1.35rem;
+}
+
+h2 {
+  font-size: 1.1rem;
+}
+
+h3 {
+  font-size: 0.95rem;
+}
+
+a {
+  color: var(--accent);
+}
+
+/* A visible keyboard focus ring on everything, always. Losing your place
+   on a keyboard-driven till is worse than a slightly busier outline. */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+  border-radius: var(--radius-sm);
+}
+
+code {
+  font-family: 'Cascadia Mono', Consolas, monospace;
+  font-size: 0.9em;
+  background: var(--accent-soft);
+  padding: 0.1em 0.35em;
+  border-radius: 4px;
+}
+
+/* --- surfaces -------------------------------------------------------- */
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: var(--sp-3) var(--sp-4);
+}
+
+/* A card whose only job is to carry the page title does not need to look
+   like a card — it just eats vertical space. */
+.card:has(> h1) {
+  background: none;
+  border: 0;
+  box-shadow: none;
+  padding: 0 0 var(--sp-1);
+}
+
+/* The intro paragraph runs the full width of the screen it heads.
+   A measure was capped here for readability, but it left every screen
+   opening with a short column of text against a wide empty right-hand
+   side, which read as a layout fault rather than as restraint. */
+.card:has(> h1) > p {
+  max-width: none;
+}
+
+.muted {
+  color: var(--text-muted);
+}
+
+.small {
+  font-size: 0.82rem;
+}
+
+.stack > * + * {
+  margin-top: var(--sp-3);
+}
+
+/* --- badges ---------------------------------------------------------- */
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-1);
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 0.05rem 0.45rem;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  white-space: nowrap;
+  vertical-align: middle;
+}
+
+.badge--ok {
+  color: var(--ok);
+  background: var(--ok-soft);
+  border-color: #b5dfc7;
+}
+
+.badge--warn {
+  color: var(--warn);
+  background: var(--warn-soft);
+  border-color: #eed9a3;
+}
+
+.badge--danger {
+  color: var(--danger);
+  background: var(--danger-soft);
+  border-color: #f2b3ac;
+}
+
+/* --- buttons --------------------------------------------------------- */
+
+.btn {
+  font: inherit;
+  font-weight: 500;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-1);
+  border: 1px solid var(--border-strong);
+  background: var(--surface);
+  color: var(--text);
+  padding: 0.3rem 0.7rem;
+  min-height: 1.9rem;
+  border-radius: var(--radius-sm);
+  white-space: nowrap;
+  transition: background-color 0.12s ease, border-color 0.12s ease, color 0.12s ease;
+}
+
+.btn:hover:not(:disabled) {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: var(--accent-soft);
+}
+
+.btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.btn--primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+.btn--primary:hover:not(:disabled) {
+  background: var(--accent-hover);
+  border-color: var(--accent-hover);
+  color: #fff;
+}
+
+.btn--danger {
+  color: var(--danger);
+  border-color: #e8b5af;
+}
+
+.btn--danger:hover:not(:disabled) {
+  background: var(--danger-soft);
+  border-color: var(--danger);
+  color: var(--danger);
+}
+
+.btn--sm {
+  padding: 0.1rem 0.45rem;
+  min-height: 1.55rem;
+  font-size: 0.8rem;
+}
+
+.btn--lg {
+  padding: 0.5rem 1.1rem;
+  min-height: 2.4rem;
+  font-size: 1rem;
+}
+
+/* --- forms ----------------------------------------------------------- */
+
+/* Styled once, globally, so no screen has to restate what an input looks
+   like. A screen that needs something different overrides with a class,
+   which wins on specificity. */
+input:not([type='checkbox']):not([type='radio']),
+select,
+textarea {
+  font: inherit;
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-sm);
+  padding: 0.3rem 0.5rem;
+  min-height: 1.9rem;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: var(--accent);
+}
+
+input:disabled,
+select:disabled {
+  background: var(--surface-sunken);
+  color: var(--text-muted);
+}
+
+.field {
+  display: block;
+  min-width: 0;
+}
+
+.field > span {
+  display: block;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  margin-bottom: 0.15rem;
+}
+
+.field input,
+.field select,
+.field textarea {
+  width: 100%;
+}
+
+.field__hint {
+  font-size: 0.76rem;
+  color: var(--text-muted);
+  margin: 0.15rem 0 0;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: var(--sp-2) var(--sp-3);
+}
+
+.form-actions {
+  display: flex;
+  gap: var(--sp-2);
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+/* A row of filters above a table. */
+.toolbar {
+  display: flex;
+  gap: var(--sp-2);
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.toolbar > .grow {
+  flex: 1;
+  min-width: 10rem;
+}
+
+/* --- feedback -------------------------------------------------------- */
+
+.alert {
+  padding: 0.4rem 0.65rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid transparent;
+  border-left-width: 3px;
+  margin: 0;
+  font-size: 0.88rem;
+}
+
+.alert--error {
+  color: var(--danger);
+  background: var(--danger-soft);
+  border-color: #f2b3ac;
+  border-left-color: var(--danger);
+}
+
+.alert--ok {
+  color: var(--ok);
+  background: var(--ok-soft);
+  border-color: #b5dfc7;
+  border-left-color: var(--ok);
+}
+
+.alert--warn {
+  color: var(--warn);
+  background: var(--warn-soft);
+  border-color: #eed9a3;
+  border-left-color: var(--warn);
+}
+
+/* --- tables ---------------------------------------------------------- */
+
+.table-wrap {
+  overflow-x: auto;
+  /* Sit flush with the card edge so rows use the full width. */
+  margin: 0 calc(var(--sp-4) * -1);
+}
+
+.table-wrap > table.data th:first-child,
+.table-wrap > table.data td:first-child {
+  padding-left: var(--sp-4);
+}
+
+.table-wrap > table.data th:last-child,
+.table-wrap > table.data td:last-child {
+  padding-right: var(--sp-4);
+}
+
+table.data {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.88rem;
+}
+
+table.data th,
+table.data td {
+  text-align: left;
+  padding: 0.35rem 0.55rem;
+  border-bottom: 1px solid var(--border);
+  white-space: nowrap;
+}
+
+/* A long list stays readable while scrolled. */
+table.data thead th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background: var(--surface-sunken);
+  color: var(--text-muted);
+  font-weight: 600;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  border-bottom: 1px solid var(--border-strong);
+}
+
+table.data tbody tr:hover {
+  background: var(--accent-soft);
+}
+
+table.data tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.numeric {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+dl.kv {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: 0.25rem 1.25rem;
+  margin: 0;
+}
+
+dl.kv dt {
+  color: var(--text-muted);
+}
+
+dl.kv dd {
+  margin: 0;
+  font-variant-numeric: tabular-nums;
+}
+
+/* --- layout helpers -------------------------------------------------- */
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+  gap: var(--sp-3);
+  align-items: start;
+}
+
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--sp-3);
+  align-items: start;
+}
+
+@media (max-width: 860px) {
+  .grid-3 {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Respect a reduced-motion preference — an animation nobody asked for is
+   an obstacle on a screen used all day. */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}

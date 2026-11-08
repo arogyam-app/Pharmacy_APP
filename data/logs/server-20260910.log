@@ -1,0 +1,7 @@
+﻿[2026-09-10T22:55:04] ==========================================================
+[2026-09-10T22:55:04] starting on 127.0.0.1:8000 with 2 worker(s)
+[2026-09-10T22:55:05] applying migrations
+    INFO  [alembic.runtime.migration] Context impl PostgresqlImpl.
+    INFO  [alembic.runtime.migration] Will assume transactional DDL.
+[2026-09-10T22:55:12] migrations ok
+[2026-09-10T22:55:12] handing over to uvicorn (output in uvicorn-20260910-225512.*.log)

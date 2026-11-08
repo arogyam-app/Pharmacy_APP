@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "{\r  \"permissions\": { \"defaultMode\": \"bypassPermissions\" }\r}"
+    ]
+  }
+}

@@ -1,0 +1,18 @@
+﻿[2026-08-08T01:05:18] ==========================================================
+[2026-08-08T01:05:18] starting on 127.0.0.1:8000 with 2 worker(s)
+[2026-08-08T01:05:18] applying migrations
+    INFO  [alembic.runtime.migration] Context impl PostgresqlImpl.
+    INFO  [alembic.runtime.migration] Will assume transactional DDL.
+[2026-08-08T01:05:36] migrations ok
+[2026-08-08T01:05:36] handing over to uvicorn (output in uvicorn-20260808-010536.*.log)
+[2026-08-08T02:30:10] ==========================================================
+[2026-08-08T02:30:10] starting on 127.0.0.1:8000 with 2 worker(s)
+[2026-08-08T02:30:11] FAILED: port 8000 is already in use by PID 6512 -- stop it first, or this would leave the old server answering with the old code. Elevated: taskkill /PID 6512 /F
+[2026-08-08T02:30:11]   at At E:\Pharmacy_APP\ops\serve.ps1:95 char:9 +         throw ("port $Port is already in use by PID $pids -- stop it  ... +         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[2026-08-08T08:44:19] ==========================================================
+[2026-08-08T08:44:19] starting on 127.0.0.1:8000 with 2 worker(s)
+[2026-08-08T08:44:23] applying migrations
+    INFO  [alembic.runtime.migration] Context impl PostgresqlImpl.
+    INFO  [alembic.runtime.migration] Will assume transactional DDL.
+[2026-08-08T08:44:35] migrations ok
+[2026-08-08T08:44:35] handing over to uvicorn (output in uvicorn-20260808-084435.*.log)

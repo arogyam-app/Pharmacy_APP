@@ -1,0 +1,38 @@
+# Python
+backend/.venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+
+# Local database & env
+*.db
+*.db-journal
+*.sqlite3
+.env
+
+# Node
+frontend/node_modules/
+frontend/dist/
+npm-debug.log*
+
+# Editors / OS
+.vscode/
+.idea/
+Thumbs.db
+.DS_Store
+
+# Deployment. `.env` at the root holds the database password and the signing
+# key and is matched by the `.env` rule above; `.env.example` is the template
+# and must stay tracked.
+!.env.example
+
+# Database dumps — real customer data, and large. The folder itself is kept
+# so the compose bind mount has something to attach to on a fresh clone.
+data/backups/*
+!data/backups/.gitkeep
+
+# Files removed during deployment work, parked here rather than deleted so
+# they can be moved somewhere permanent by hand. See docs/DEPLOYMENT.md.
+delete/*
+!delete/.gitkeep
